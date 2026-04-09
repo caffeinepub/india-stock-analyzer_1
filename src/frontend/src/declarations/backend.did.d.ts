@@ -35,6 +35,7 @@ export interface _SERVICE {
   'createPortfolio' : ActorMethod<[], undefined>,
   'getAllPortfolios' : ActorMethod<[], Array<Portfolio>>,
   'getPortfolio' : ActorMethod<[Principal], Portfolio>,
+  'isOwner' : ActorMethod<[], boolean>,
   'isRegistered' : ActorMethod<[], boolean>,
 }
 export declare const idlService: IDL.ServiceClass;

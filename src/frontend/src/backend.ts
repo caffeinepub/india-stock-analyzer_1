@@ -114,8 +114,8 @@ export interface backendInterface {
     createPortfolio(): Promise<void>;
     getAllPortfolios(): Promise<Array<Portfolio>>;
     getPortfolio(user: Principal): Promise<Portfolio>;
-    isRegistered(): Promise<boolean>;
     isOwner(): Promise<boolean>;
+    isRegistered(): Promise<boolean>;
 }
 export class Backend implements backendInterface {
     constructor(private actor: ActorSubclass<_SERVICE>, private _uploadFile: (file: ExternalBlob) => Promise<Uint8Array>, private _downloadFile: (file: Uint8Array) => Promise<ExternalBlob>, private processError?: (error: unknown) => never){}
@@ -161,20 +161,6 @@ export class Backend implements backendInterface {
             return result;
         }
     }
-    async isRegistered(): Promise<boolean> {
-        if (this.processError) {
-            try {
-                const result = await this.actor.isRegistered();
-                return result;
-            } catch (e) {
-                this.processError(e);
-                throw new Error("unreachable");
-            }
-        } else {
-            const result = await this.actor.isRegistered();
-            return result;
-        }
-    }
     async isOwner(): Promise<boolean> {
         if (this.processError) {
             try {
@@ -186,6 +172,20 @@ export class Backend implements backendInterface {
             }
         } else {
             const result = await this.actor.isOwner();
+            return result;
+        }
+    }
+    async isRegistered(): Promise<boolean> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.isRegistered();
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.isRegistered();
             return result;
         }
     }

@@ -1,3 +1,17 @@
+import { isMarketOpenForRegion } from "./marketHours";
+
+/**
+ * Returns whether the market is open for a given symbol/region/assetClass.
+ * Crypto is always open; other assets depend on exchange hours.
+ */
+export function isMarketOpenForSymbol(
+  _symbol: string,
+  region: string,
+  assetClass?: string,
+): boolean {
+  return isMarketOpenForRegion(region, assetClass);
+}
+
 export function getYahooSymbol(
   symbol: string,
   _exchange: string,
@@ -130,4 +144,128 @@ export function generateFutureCandles(
     });
   }
   return result;
+}
+
+// ---- CoinGecko crypto integration ----
+
+/** Map from our symbol to CoinGecko coin ID */
+export const COINGECKO_ID_MAP: Record<string, string> = {
+  BTC: "bitcoin",
+  ETH: "ethereum",
+  BNB: "binancecoin",
+  SOL: "solana",
+  XRP: "ripple",
+  ADA: "cardano",
+  DOGE: "dogecoin",
+  MATIC: "matic-network",
+  SHIB: "shiba-inu",
+  LTC: "litecoin",
+  AVAX: "avalanche-2",
+  DOT: "polkadot",
+  LINK: "chainlink",
+  UNI: "uniswap",
+  ATOM: "cosmos",
+  XLM: "stellar",
+  ALGO: "algorand",
+  VET: "vechain",
+  ICP: "internet-computer",
+  FIL: "filecoin",
+  HBAR: "hedera-hashgraph",
+  APT: "aptos",
+  ARB: "arbitrum",
+  OP: "optimism",
+  NEAR: "near",
+  INJ: "injective-protocol",
+  SUI: "sui",
+  TIA: "celestia",
+  SEI: "sei-network",
+  PYTH: "pyth-network",
+  JUP: "jupiter-exchange-solana",
+  WIF: "dogwifcoin",
+  BONK: "bonk",
+  PEPE: "pepe",
+};
+
+export interface CryptoQuote {
+  symbol: string;
+  currentPrice: number;
+  changePercent24h: number;
+}
+
+/**
+ * Fetch live prices for all crypto symbols in one CoinGecko API call.
+ * Returns a map of symbol -> CryptoQuote.
+ */
+export async function fetchCryptoPrices(
+  symbols: string[],
+): Promise<Record<string, CryptoQuote>> {
+  const validSymbols = symbols.filter((s) => COINGECKO_ID_MAP[s]);
+  if (validSymbols.length === 0) return {};
+
+  const ids = validSymbols.map((s) => COINGECKO_ID_MAP[s]).join(",");
+  const url = `https://api.coingecko.com/api/v3/simple/price?ids=${ids}&vs_currencies=usd&include_24hr_change=true`;
+  const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(url)}`;
+
+  try {
+    const res = await fetch(proxyUrl, { signal: AbortSignal.timeout(10000) });
+    if (!res.ok) return {};
+    const data = await res.json();
+
+    const result: Record<string, CryptoQuote> = {};
+    for (const sym of validSymbols) {
+      const coinId = COINGECKO_ID_MAP[sym];
+      const entry = data[coinId];
+      if (!entry) continue;
+      const price = entry.usd as number | undefined;
+      const change = (entry.usd_24h_change as number | undefined) ?? 0;
+      if (typeof price !== "number") continue;
+      result[sym] = {
+        symbol: sym,
+        currentPrice: price,
+        changePercent24h: change,
+      };
+    }
+    return result;
+  } catch {
+    return {};
+  }
+}
+
+/**
+ * Fetch 24h minutely chart data for a single crypto coin from CoinGecko.
+ * Returns candles usable by the chart (time in unix seconds).
+ */
+export async function fetchCryptoCandles(
+  coinId: string,
+): Promise<RealCandle[]> {
+  const url = `https://api.coingecko.com/api/v3/coins/${coinId}/market_chart?vs_currency=usd&days=1&interval=minutely`;
+  const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(url)}`;
+
+  try {
+    const res = await fetch(proxyUrl, { signal: AbortSignal.timeout(12000) });
+    if (!res.ok) return [];
+    const data = await res.json();
+
+    // CoinGecko returns { prices: [[timestamp_ms, price], ...] }
+    const prices: [number, number][] = data?.prices ?? [];
+    if (prices.length === 0) return [];
+
+    const candles: RealCandle[] = [];
+    for (let i = 1; i < prices.length; i++) {
+      const [tMs, close] = prices[i];
+      const [, open] = prices[i - 1];
+      const high = Math.max(open, close) * (1 + Math.random() * 0.001);
+      const low = Math.min(open, close) * (1 - Math.random() * 0.001);
+      candles.push({
+        time: Math.floor(tMs / 1000),
+        open,
+        high,
+        low,
+        close,
+      });
+    }
+    return candles;
+  } catch {
+    return [];
+  }
 }

@@ -1,3 +1,5 @@
+export type AssetClass = "stock" | "crypto" | "forex" | "commodity" | "index";
+
 export interface StockInfo {
   symbol: string;
   name: string;
@@ -7,6 +9,7 @@ export interface StockInfo {
   currency: string;
   currencySymbol: string;
   region: string;
+  assetClass?: AssetClass;
 }
 
 export const STOCKS: StockInfo[] = [
@@ -192,7 +195,7 @@ export const STOCKS: StockInfo[] = [
     currencySymbol: "₹",
     region: "India",
   },
-  // Energy & Oil
+  // Energy
   {
     symbol: "RELIANCE",
     name: "Reliance Industries",
@@ -263,7 +266,7 @@ export const STOCKS: StockInfo[] = [
     currencySymbol: "₹",
     region: "India",
   },
-  // FMCG & Consumer
+  // FMCG
   {
     symbol: "ITC",
     name: "ITC Ltd",
@@ -405,7 +408,7 @@ export const STOCKS: StockInfo[] = [
     currencySymbol: "₹",
     region: "India",
   },
-  // Metals & Mining
+  // Metals
   {
     symbol: "TATASTEEL",
     name: "Tata Steel Ltd",
@@ -507,7 +510,7 @@ export const STOCKS: StockInfo[] = [
     currencySymbol: "₹",
     region: "India",
   },
-  // Infrastructure & Real Estate
+  // Infrastructure
   {
     symbol: "LARSEN",
     name: "Larsen & Toubro",
@@ -558,7 +561,6 @@ export const STOCKS: StockInfo[] = [
     currencySymbol: "₹",
     region: "India",
   },
-  // Telecom & Media
   {
     symbol: "BHARTIARTL",
     name: "Bharti Airtel Ltd",
@@ -589,7 +591,6 @@ export const STOCKS: StockInfo[] = [
     currencySymbol: "₹",
     region: "India",
   },
-  // Cement
   {
     symbol: "ULTRACEMCO",
     name: "UltraTech Cement",
@@ -620,7 +621,6 @@ export const STOCKS: StockInfo[] = [
     currencySymbol: "₹",
     region: "India",
   },
-  // Chemical
   {
     symbol: "PIDILITIND",
     name: "Pidilite Industries",
@@ -641,7 +641,6 @@ export const STOCKS: StockInfo[] = [
     currencySymbol: "₹",
     region: "India",
   },
-  // BSE Additional
   {
     symbol: "TATAPOWER",
     name: "Tata Power Company",
@@ -703,7 +702,7 @@ export const STOCKS: StockInfo[] = [
     region: "India",
   },
 
-  // USA - NASDAQ/NYSE
+  // USA
   {
     symbol: "AAPL",
     name: "Apple Inc",
@@ -1005,7 +1004,7 @@ export const STOCKS: StockInfo[] = [
     region: "USA",
   },
 
-  // UK - LSE
+  // UK
   {
     symbol: "HSBA",
     name: "HSBC Holdings",
@@ -1107,7 +1106,7 @@ export const STOCKS: StockInfo[] = [
     region: "UK",
   },
 
-  // Japan - TSE
+  // Japan
   {
     symbol: "7203",
     name: "Toyota Motor Corp",
@@ -1209,7 +1208,7 @@ export const STOCKS: StockInfo[] = [
     region: "Japan",
   },
 
-  // China - SSE/SZSE
+  // China
   {
     symbol: "601398",
     name: "ICBC",
@@ -1291,7 +1290,7 @@ export const STOCKS: StockInfo[] = [
     region: "China",
   },
 
-  // Germany - FSE/XETRA
+  // Germany
   {
     symbol: "SAP",
     name: "SAP SE",
@@ -1373,7 +1372,7 @@ export const STOCKS: StockInfo[] = [
     region: "Germany",
   },
 
-  // Hong Kong - HKEX
+  // Hong Kong
   {
     symbol: "700",
     name: "Tencent Holdings",
@@ -1455,7 +1454,7 @@ export const STOCKS: StockInfo[] = [
     region: "HongKong",
   },
 
-  // Australia - ASX
+  // Australia
   {
     symbol: "CBA",
     name: "Commonwealth Bank",
@@ -1516,6 +1515,663 @@ export const STOCKS: StockInfo[] = [
     currencySymbol: "A$",
     region: "Australia",
   },
+
+  // ---- INDICES ----
+  {
+    symbol: "NIFTY50",
+    name: "NIFTY 50 Index",
+    exchange: "NSE",
+    basePrice: 22500,
+    sector: "Index",
+    currency: "INR",
+    currencySymbol: "₹",
+    region: "India",
+    assetClass: "index",
+  },
+  {
+    symbol: "SENSEX",
+    name: "BSE SENSEX",
+    exchange: "BSE",
+    basePrice: 73800,
+    sector: "Index",
+    currency: "INR",
+    currencySymbol: "₹",
+    region: "India",
+    assetClass: "index",
+  },
+  {
+    symbol: "NIFTYBANK",
+    name: "NIFTY Bank Index",
+    exchange: "NSE",
+    basePrice: 48500,
+    sector: "Index",
+    currency: "INR",
+    currencySymbol: "₹",
+    region: "India",
+    assetClass: "index",
+  },
+  {
+    symbol: "NASDAQ",
+    name: "NASDAQ Composite",
+    exchange: "NYSE",
+    basePrice: 18000,
+    sector: "Index",
+    currency: "USD",
+    currencySymbol: "$",
+    region: "USA",
+    assetClass: "index",
+  },
+  {
+    symbol: "SP500",
+    name: "S&P 500",
+    exchange: "NYSE",
+    basePrice: 5200,
+    sector: "Index",
+    currency: "USD",
+    currencySymbol: "$",
+    region: "USA",
+    assetClass: "index",
+  },
+  {
+    symbol: "DOW",
+    name: "Dow Jones Ind Avg",
+    exchange: "NYSE",
+    basePrice: 39000,
+    sector: "Index",
+    currency: "USD",
+    currencySymbol: "$",
+    region: "USA",
+    assetClass: "index",
+  },
+  {
+    symbol: "FTSE100",
+    name: "FTSE 100 Index",
+    exchange: "LSE",
+    basePrice: 7800,
+    sector: "Index",
+    currency: "GBP",
+    currencySymbol: "£",
+    region: "UK",
+    assetClass: "index",
+  },
+  {
+    symbol: "DAX",
+    name: "DAX 40 Index",
+    exchange: "FSE",
+    basePrice: 18000,
+    sector: "Index",
+    currency: "EUR",
+    currencySymbol: "€",
+    region: "Germany",
+    assetClass: "index",
+  },
+  {
+    symbol: "NIKKEI225",
+    name: "Nikkei 225",
+    exchange: "TSE",
+    basePrice: 40000,
+    sector: "Index",
+    currency: "JPY",
+    currencySymbol: "¥",
+    region: "Japan",
+    assetClass: "index",
+  },
+  {
+    symbol: "HANGSENG",
+    name: "Hang Seng Index",
+    exchange: "HKEX",
+    basePrice: 17000,
+    sector: "Index",
+    currency: "HKD",
+    currencySymbol: "HK$",
+    region: "HongKong",
+    assetClass: "index",
+  },
+  {
+    symbol: "CAC40",
+    name: "CAC 40 Index",
+    exchange: "EPA",
+    basePrice: 8000,
+    sector: "Index",
+    currency: "EUR",
+    currencySymbol: "€",
+    region: "Europe",
+    assetClass: "index",
+  },
+
+  // ---- CRYPTO ----
+  {
+    symbol: "BTC",
+    name: "Bitcoin",
+    exchange: "CRYPTO",
+    basePrice: 84000,
+    sector: "Cryptocurrency",
+    currency: "USD",
+    currencySymbol: "$",
+    region: "Global",
+    assetClass: "crypto",
+  },
+  {
+    symbol: "ETH",
+    name: "Ethereum",
+    exchange: "CRYPTO",
+    basePrice: 2000,
+    sector: "Cryptocurrency",
+    currency: "USD",
+    currencySymbol: "$",
+    region: "Global",
+    assetClass: "crypto",
+  },
+  {
+    symbol: "BNB",
+    name: "BNB (Binance)",
+    exchange: "CRYPTO",
+    basePrice: 580,
+    sector: "Cryptocurrency",
+    currency: "USD",
+    currencySymbol: "$",
+    region: "Global",
+    assetClass: "crypto",
+  },
+  {
+    symbol: "SOL",
+    name: "Solana",
+    exchange: "CRYPTO",
+    basePrice: 130,
+    sector: "Cryptocurrency",
+    currency: "USD",
+    currencySymbol: "$",
+    region: "Global",
+    assetClass: "crypto",
+  },
+  {
+    symbol: "XRP",
+    name: "XRP (Ripple)",
+    exchange: "CRYPTO",
+    basePrice: 2.2,
+    sector: "Cryptocurrency",
+    currency: "USD",
+    currencySymbol: "$",
+    region: "Global",
+    assetClass: "crypto",
+  },
+  {
+    symbol: "ADA",
+    name: "Cardano",
+    exchange: "CRYPTO",
+    basePrice: 0.75,
+    sector: "Cryptocurrency",
+    currency: "USD",
+    currencySymbol: "$",
+    region: "Global",
+    assetClass: "crypto",
+  },
+  {
+    symbol: "DOGE",
+    name: "Dogecoin",
+    exchange: "CRYPTO",
+    basePrice: 0.18,
+    sector: "Cryptocurrency",
+    currency: "USD",
+    currencySymbol: "$",
+    region: "Global",
+    assetClass: "crypto",
+  },
+  {
+    symbol: "MATIC",
+    name: "Polygon (MATIC)",
+    exchange: "CRYPTO",
+    basePrice: 0.5,
+    sector: "Cryptocurrency",
+    currency: "USD",
+    currencySymbol: "$",
+    region: "Global",
+    assetClass: "crypto",
+  },
+  {
+    symbol: "SHIB",
+    name: "Shiba Inu",
+    exchange: "CRYPTO",
+    basePrice: 0.000014,
+    sector: "Cryptocurrency",
+    currency: "USD",
+    currencySymbol: "$",
+    region: "Global",
+    assetClass: "crypto",
+  },
+  {
+    symbol: "LTC",
+    name: "Litecoin",
+    exchange: "CRYPTO",
+    basePrice: 88,
+    sector: "Cryptocurrency",
+    currency: "USD",
+    currencySymbol: "$",
+    region: "Global",
+    assetClass: "crypto",
+  },
+  {
+    symbol: "AVAX",
+    name: "Avalanche",
+    exchange: "CRYPTO",
+    basePrice: 25,
+    sector: "Cryptocurrency",
+    currency: "USD",
+    currencySymbol: "$",
+    region: "Global",
+    assetClass: "crypto",
+  },
+  {
+    symbol: "DOT",
+    name: "Polkadot",
+    exchange: "CRYPTO",
+    basePrice: 4.5,
+    sector: "Cryptocurrency",
+    currency: "USD",
+    currencySymbol: "$",
+    region: "Global",
+    assetClass: "crypto",
+  },
+  {
+    symbol: "LINK",
+    name: "Chainlink",
+    exchange: "CRYPTO",
+    basePrice: 14,
+    sector: "Cryptocurrency",
+    currency: "USD",
+    currencySymbol: "$",
+    region: "Global",
+    assetClass: "crypto",
+  },
+  {
+    symbol: "UNI",
+    name: "Uniswap",
+    exchange: "CRYPTO",
+    basePrice: 6,
+    sector: "Cryptocurrency",
+    currency: "USD",
+    currencySymbol: "$",
+    region: "Global",
+    assetClass: "crypto",
+  },
+  {
+    symbol: "ATOM",
+    name: "Cosmos",
+    exchange: "CRYPTO",
+    basePrice: 4.5,
+    sector: "Cryptocurrency",
+    currency: "USD",
+    currencySymbol: "$",
+    region: "Global",
+    assetClass: "crypto",
+  },
+  {
+    symbol: "XLM",
+    name: "Stellar",
+    exchange: "CRYPTO",
+    basePrice: 0.28,
+    sector: "Cryptocurrency",
+    currency: "USD",
+    currencySymbol: "$",
+    region: "Global",
+    assetClass: "crypto",
+  },
+  {
+    symbol: "ALGO",
+    name: "Algorand",
+    exchange: "CRYPTO",
+    basePrice: 0.22,
+    sector: "Cryptocurrency",
+    currency: "USD",
+    currencySymbol: "$",
+    region: "Global",
+    assetClass: "crypto",
+  },
+  {
+    symbol: "VET",
+    name: "VeChain",
+    exchange: "CRYPTO",
+    basePrice: 0.025,
+    sector: "Cryptocurrency",
+    currency: "USD",
+    currencySymbol: "$",
+    region: "Global",
+    assetClass: "crypto",
+  },
+  {
+    symbol: "ICP",
+    name: "Internet Computer",
+    exchange: "CRYPTO",
+    basePrice: 6.5,
+    sector: "Cryptocurrency",
+    currency: "USD",
+    currencySymbol: "$",
+    region: "Global",
+    assetClass: "crypto",
+  },
+  {
+    symbol: "FIL",
+    name: "Filecoin",
+    exchange: "CRYPTO",
+    basePrice: 3.2,
+    sector: "Cryptocurrency",
+    currency: "USD",
+    currencySymbol: "$",
+    region: "Global",
+    assetClass: "crypto",
+  },
+  {
+    symbol: "HBAR",
+    name: "Hedera",
+    exchange: "CRYPTO",
+    basePrice: 0.18,
+    sector: "Cryptocurrency",
+    currency: "USD",
+    currencySymbol: "$",
+    region: "Global",
+    assetClass: "crypto",
+  },
+  {
+    symbol: "APT",
+    name: "Aptos",
+    exchange: "CRYPTO",
+    basePrice: 5.5,
+    sector: "Cryptocurrency",
+    currency: "USD",
+    currencySymbol: "$",
+    region: "Global",
+    assetClass: "crypto",
+  },
+  {
+    symbol: "ARB",
+    name: "Arbitrum",
+    exchange: "CRYPTO",
+    basePrice: 0.38,
+    sector: "Cryptocurrency",
+    currency: "USD",
+    currencySymbol: "$",
+    region: "Global",
+    assetClass: "crypto",
+  },
+  {
+    symbol: "OP",
+    name: "Optimism",
+    exchange: "CRYPTO",
+    basePrice: 0.75,
+    sector: "Cryptocurrency",
+    currency: "USD",
+    currencySymbol: "$",
+    region: "Global",
+    assetClass: "crypto",
+  },
+  {
+    symbol: "NEAR",
+    name: "NEAR Protocol",
+    exchange: "CRYPTO",
+    basePrice: 2.5,
+    sector: "Cryptocurrency",
+    currency: "USD",
+    currencySymbol: "$",
+    region: "Global",
+    assetClass: "crypto",
+  },
+  {
+    symbol: "INJ",
+    name: "Injective",
+    exchange: "CRYPTO",
+    basePrice: 12,
+    sector: "Cryptocurrency",
+    currency: "USD",
+    currencySymbol: "$",
+    region: "Global",
+    assetClass: "crypto",
+  },
+  {
+    symbol: "SUI",
+    name: "Sui",
+    exchange: "CRYPTO",
+    basePrice: 2.2,
+    sector: "Cryptocurrency",
+    currency: "USD",
+    currencySymbol: "$",
+    region: "Global",
+    assetClass: "crypto",
+  },
+  {
+    symbol: "TIA",
+    name: "Celestia",
+    exchange: "CRYPTO",
+    basePrice: 3.2,
+    sector: "Cryptocurrency",
+    currency: "USD",
+    currencySymbol: "$",
+    region: "Global",
+    assetClass: "crypto",
+  },
+  {
+    symbol: "SEI",
+    name: "Sei Network",
+    exchange: "CRYPTO",
+    basePrice: 0.22,
+    sector: "Cryptocurrency",
+    currency: "USD",
+    currencySymbol: "$",
+    region: "Global",
+    assetClass: "crypto",
+  },
+  {
+    symbol: "PYTH",
+    name: "Pyth Network",
+    exchange: "CRYPTO",
+    basePrice: 0.12,
+    sector: "Cryptocurrency",
+    currency: "USD",
+    currencySymbol: "$",
+    region: "Global",
+    assetClass: "crypto",
+  },
+  {
+    symbol: "JUP",
+    name: "Jupiter",
+    exchange: "CRYPTO",
+    basePrice: 0.55,
+    sector: "Cryptocurrency",
+    currency: "USD",
+    currencySymbol: "$",
+    region: "Global",
+    assetClass: "crypto",
+  },
+  {
+    symbol: "WIF",
+    name: "dogwifhat",
+    exchange: "CRYPTO",
+    basePrice: 0.95,
+    sector: "Cryptocurrency",
+    currency: "USD",
+    currencySymbol: "$",
+    region: "Global",
+    assetClass: "crypto",
+  },
+  {
+    symbol: "BONK",
+    name: "Bonk",
+    exchange: "CRYPTO",
+    basePrice: 0.0000095,
+    sector: "Cryptocurrency",
+    currency: "USD",
+    currencySymbol: "$",
+    region: "Global",
+    assetClass: "crypto",
+  },
+  {
+    symbol: "PEPE",
+    name: "Pepe",
+    exchange: "CRYPTO",
+    basePrice: 0.0000065,
+    sector: "Cryptocurrency",
+    currency: "USD",
+    currencySymbol: "$",
+    region: "Global",
+    assetClass: "crypto",
+  },
+
+  // ---- FOREX ----
+  {
+    symbol: "USDINR",
+    name: "USD / INR",
+    exchange: "FOREX",
+    basePrice: 83.2,
+    sector: "Forex",
+    currency: "INR",
+    currencySymbol: "₹",
+    region: "Global",
+    assetClass: "forex",
+  },
+  {
+    symbol: "EURINR",
+    name: "EUR / INR",
+    exchange: "FOREX",
+    basePrice: 90.5,
+    sector: "Forex",
+    currency: "INR",
+    currencySymbol: "₹",
+    region: "Global",
+    assetClass: "forex",
+  },
+  {
+    symbol: "GBPINR",
+    name: "GBP / INR",
+    exchange: "FOREX",
+    basePrice: 105.3,
+    sector: "Forex",
+    currency: "INR",
+    currencySymbol: "₹",
+    region: "Global",
+    assetClass: "forex",
+  },
+  {
+    symbol: "JPYINR",
+    name: "JPY / INR",
+    exchange: "FOREX",
+    basePrice: 0.56,
+    sector: "Forex",
+    currency: "INR",
+    currencySymbol: "₹",
+    region: "Global",
+    assetClass: "forex",
+  },
+  {
+    symbol: "CNYINR",
+    name: "CNY / INR",
+    exchange: "FOREX",
+    basePrice: 11.5,
+    sector: "Forex",
+    currency: "INR",
+    currencySymbol: "₹",
+    region: "Global",
+    assetClass: "forex",
+  },
+  {
+    symbol: "AUDINR",
+    name: "AUD / INR",
+    exchange: "FOREX",
+    basePrice: 54.2,
+    sector: "Forex",
+    currency: "INR",
+    currencySymbol: "₹",
+    region: "Global",
+    assetClass: "forex",
+  },
+  {
+    symbol: "SGDINR",
+    name: "SGD / INR",
+    exchange: "FOREX",
+    basePrice: 62.8,
+    sector: "Forex",
+    currency: "INR",
+    currencySymbol: "₹",
+    region: "Global",
+    assetClass: "forex",
+  },
+  {
+    symbol: "CADINR",
+    name: "CAD / INR",
+    exchange: "FOREX",
+    basePrice: 61.5,
+    sector: "Forex",
+    currency: "INR",
+    currencySymbol: "₹",
+    region: "Global",
+    assetClass: "forex",
+  },
+
+  // ---- COMMODITIES ----
+  {
+    symbol: "GOLD",
+    name: "Gold (10g)",
+    exchange: "MCX",
+    basePrice: 72000,
+    sector: "Commodity",
+    currency: "INR",
+    currencySymbol: "₹",
+    region: "India",
+    assetClass: "commodity",
+  },
+  {
+    symbol: "SILVER",
+    name: "Silver (100g)",
+    exchange: "MCX",
+    basePrice: 850,
+    sector: "Commodity",
+    currency: "INR",
+    currencySymbol: "₹",
+    region: "India",
+    assetClass: "commodity",
+  },
+  {
+    symbol: "CRUDEOIL",
+    name: "Crude Oil (barrel)",
+    exchange: "MCX",
+    basePrice: 6500,
+    sector: "Commodity",
+    currency: "INR",
+    currencySymbol: "₹",
+    region: "India",
+    assetClass: "commodity",
+  },
+  {
+    symbol: "NATGAS",
+    name: "Natural Gas (mmbtu)",
+    exchange: "MCX",
+    basePrice: 220,
+    sector: "Commodity",
+    currency: "INR",
+    currencySymbol: "₹",
+    region: "India",
+    assetClass: "commodity",
+  },
+  {
+    symbol: "COPPER",
+    name: "Copper (kg)",
+    exchange: "MCX",
+    basePrice: 750,
+    sector: "Commodity",
+    currency: "INR",
+    currencySymbol: "₹",
+    region: "India",
+    assetClass: "commodity",
+  },
+  {
+    symbol: "ALUMINIUM",
+    name: "Aluminium (kg)",
+    exchange: "MCX",
+    basePrice: 220,
+    sector: "Commodity",
+    currency: "INR",
+    currencySymbol: "₹",
+    region: "India",
+    assetClass: "commodity",
+  },
 ];
 
 export function generateHistoricalPrices(
@@ -1554,7 +2210,7 @@ export function generateOHLC(prices: number[]) {
 }
 
 export interface LiveCandle {
-  time: string; // e.g. "14:35"
+  time: string;
   open: number;
   high: number;
   low: number;
@@ -1563,15 +2219,12 @@ export interface LiveCandle {
   isFuture?: boolean;
 }
 
-/** Generate intraday 1-min candles starting from market open (9:15 AM)
- *  up to current simulated time, then future=true candles for 15 min ahead */
 export function generateIntradayCandles(
   basePrice: number,
   seed: number,
-  includeMinutes: number, // how many minutes since 9:15 have elapsed
+  includeMinutes: number,
 ): LiveCandle[] {
   const candles: LiveCandle[] = [];
-  // Use seeded pseudo-random for consistent per-stock data
   const rand = (i: number, salt = 0) => {
     const x = Math.sin(seed * 9999 + i * 127 + salt) * 43758.5453;
     return x - Math.floor(x);
@@ -1586,7 +2239,6 @@ export function generateIntradayCandles(
     const min = (i + 15) % 60;
     const time = `${String(hour).padStart(2, "0")}:${String(min).padStart(2, "0")}`;
 
-    // Trend component: slight drift + mean reversion
     const trendBias = (rand(i, 1) - 0.47) * 0.003;
     const reversion = ((basePrice - price) / basePrice) * 0.05;
     const change = trendBias + reversion + (rand(i, 2) - 0.5) * 0.004;

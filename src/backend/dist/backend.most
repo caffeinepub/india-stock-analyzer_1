@@ -1,0 +1,40 @@
+// Version: 1.0.0
+type Data__791452850<K, V> =
+  {var count : Nat__490723111; kvs : [var ?(K, V)]};
+type Int__270357528 = Int__616954475;
+type Int__616954475 = Int;
+type Internal__8484328<K, V> =
+  {children : [var ?Node__46230540<K, V>]; data : Data__791452850<K, V>};
+type Leaf__809889148<K, V> = {data : Data__791452850<K, V>};
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type Node__46230540<K, V> =
+  {#internal : Internal__8484328<K, V>; #leaf : Leaf__809889148<K, V>};
+type Portfolio__529122221 =
+  {
+    autoTradeSettings : [Text];
+    balance : Nat;
+    holdings : [Stock__804811871];
+    tradeHistory : [Trade__711108367];
+    watchlist : [Text]
+  };
+type Stock__804811871 = {avgBuyPrice : Nat; quantity : Nat; symbol : Text};
+type Time__796480547 = Int__270357528;
+type Time__900049286 = Time__796480547;
+type Trade__711108367 =
+  {
+    autoTrade : Bool;
+    price : Nat;
+    quantity : Nat;
+    symbol : Text;
+    timestamp : Time__900049286;
+    tradeType : Text
+  };
+actor {
+  stable var owner : ?Principal;
+  stable portfolios :
+    {
+      var root : Node__46230540<Principal, Portfolio__529122221>;
+      var size : Nat__490723111
+    }
+};

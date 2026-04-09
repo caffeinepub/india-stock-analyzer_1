@@ -1,0 +1,31 @@
+type Trade = 
+ record {
+   autoTrade: bool;
+   price: nat;
+   quantity: nat;
+   symbol: text;
+   timestamp: Time;
+   tradeType: text;
+ };
+type Time = int;
+type Stock = 
+ record {
+   avgBuyPrice: nat;
+   quantity: nat;
+   symbol: text;
+ };
+type Portfolio = 
+ record {
+   autoTradeSettings: vec text;
+   balance: nat;
+   holdings: vec Stock;
+   tradeHistory: vec Trade;
+   watchlist: vec text;
+ };
+service : {
+  createPortfolio: () -> ();
+  getAllPortfolios: () -> (vec Portfolio) query;
+  getPortfolio: (user: principal) -> (Portfolio) query;
+  isOwner: () -> (bool) query;
+  isRegistered: () -> (bool) query;
+}

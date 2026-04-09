@@ -1,9 +1,5 @@
 import Map "mo:core/Map";
-import Text "mo:core/Text";
 import Time "mo:core/Time";
-import Array "mo:core/Array";
-import Iter "mo:core/Iter";
-import Nat32 "mo:core/Nat32";
 import Principal "mo:core/Principal";
 import Runtime "mo:core/Runtime";
 
@@ -34,7 +30,7 @@ actor {
   let portfolios = Map.empty<Principal, Portfolio>();
 
   // Owner: pehla registered user owner ban jaata hai
-  stable var owner : ?Principal = null;
+  var owner : ?Principal = null;
 
   public shared ({ caller }) func createPortfolio() : async () {
     if (portfolios.containsKey(caller)) { Runtime.trap("Portfolio already exists") };

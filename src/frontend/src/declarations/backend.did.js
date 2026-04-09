@@ -34,8 +34,8 @@ export const idlService = IDL.Service({
   'createPortfolio' : IDL.Func([], [], []),
   'getAllPortfolios' : IDL.Func([], [IDL.Vec(Portfolio)], ['query']),
   'getPortfolio' : IDL.Func([IDL.Principal], [Portfolio], ['query']),
-  'isRegistered' : IDL.Func([], [IDL.Bool], ['query']),
   'isOwner' : IDL.Func([], [IDL.Bool], ['query']),
+  'isRegistered' : IDL.Func([], [IDL.Bool], ['query']),
 });
 
 export const idlInitArgs = [];
@@ -67,8 +67,8 @@ export const idlFactory = ({ IDL }) => {
     'createPortfolio' : IDL.Func([], [], []),
     'getAllPortfolios' : IDL.Func([], [IDL.Vec(Portfolio)], ['query']),
     'getPortfolio' : IDL.Func([IDL.Principal], [Portfolio], ['query']),
-    'isRegistered' : IDL.Func([], [IDL.Bool], ['query']),
     'isOwner' : IDL.Func([], [IDL.Bool], ['query']),
+    'isRegistered' : IDL.Func([], [IDL.Bool], ['query']),
   });
 };
 

@@ -32,6 +32,6 @@ export interface backendInterface {
     createPortfolio(): Promise<void>;
     getAllPortfolios(): Promise<Array<Portfolio>>;
     getPortfolio(user: Principal): Promise<Portfolio>;
-    isRegistered(): Promise<boolean>;
     isOwner(): Promise<boolean>;
+    isRegistered(): Promise<boolean>;
 }
